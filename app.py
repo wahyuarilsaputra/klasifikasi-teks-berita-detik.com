@@ -26,7 +26,7 @@ data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
 
 def main():
     st.sidebar.title("Pengolahan Data Berita dari Detik.Com")
-    menu = ["Data", "Pre processing data","Ekstraksi Fitur","Topic Modeling", "Klasifikasi Data", "Prediksi Data Baru"]
+    menu = ["Data", "Pre processing data","Ekstraksi Fitur","Topic Modeling", "Klasifikasi Data"]
     choice = st.sidebar.selectbox("Menu", menu)
     global data
 
