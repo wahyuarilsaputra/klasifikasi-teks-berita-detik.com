@@ -1,6 +1,5 @@
 import nltk
 from nltk.tokenize import word_tokenize
-import pandas as pd
 
 nltk.download('popular')
 
