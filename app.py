@@ -19,7 +19,6 @@ from tokenisasi import tokenize_text
 from stopword import remove_stopwords
 
 #import data
-# data = pd.read_csv('https://raw.githubusercontent.com/wahyuarilsaputra/dataset/main/DataPTAInformatikaLabel.csv',delimiter=';')
 data = pd.read_csv('https://raw.githubusercontent.com/wahyuarilsaputra/dataset/main/databerita.csv')
 data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
 
@@ -144,7 +143,6 @@ def main():
         st.markdown("<hr><br>", unsafe_allow_html=True)
         data = pd.read_csv('https://raw.githubusercontent.com/wahyuarilsaputra/dataset/main/dataProcessing.csv')
         data_tfidf = pd.read_csv('dataCount.csv')
-        # with open("model/lda_model.pkl", "rb") as file:
         with open("model/lda_model100.pkl", "rb") as file:
             lda_model = pickle.load(file)
         with st.expander("Update Bobot"):
@@ -185,7 +183,6 @@ def main():
             df_baru['Isi'] = df_baru['Isi'].fillna('')
             df_baru['Isi_tokens'] = df_baru['Isi'].apply(lambda x: tokenize_text(x))
             df_baru['Isi_tokens'] = df_baru['Isi_tokens'].apply(lambda x: remove_stopwords(x))
-            df_baru['Isi_tokens'] = df_baru['Isi_tokens'].apply(lambda x: stem_text(' '.join(x)).split(' '))
             df_baru['Isi'] = df_baru['Isi_tokens'].apply(lambda tokens: ' '.join(tokens))
             st.markdown("<h4>Hasil Processing</h4>", unsafe_allow_html=True)
             st.write(df_baru[['Isi','Isi_tokens']])
@@ -202,7 +199,6 @@ def main():
             X_count_baru = count_vectorizer.transform(df_baru['Isi'])
 
             # Topic Modeling Data
-            # with open("model/lda_model.pkl", "rb") as file:
             with open("model/lda_model100.pkl", "rb") as file:
                 lda_model = pickle.load(file)
             w1 = lda_model.transform(X_count)
